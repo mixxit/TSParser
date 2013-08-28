@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="java"/>
+	<classpathentry kind="lib" path="bin/java-cup-11a.jar"/>
+	<classpathentry kind="lib" path="bin/JFlex.jar"/>
+	<classpathentry kind="lib" path="jar/Compiler.jar"/>
+	<classpathentry kind="lib" path="jar/java-cup-11a-runtime.jar"/>
+	<classpathentry kind="lib" path="lib/java-cup-11a-runtime.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="classes"/>
+</classpath>

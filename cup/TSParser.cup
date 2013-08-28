@@ -1,0 +1,32 @@
+package Example;
+
+import java_cup.runtime.*;
+
+parser code {:
+	public static void main(String args[]) throws Exception {
+		SymbolFactory sf = new DefaultSymbolFactory();
+		if (args.length==0) new TSParser(new TSScanner(System.in,sf),sf).parse();
+		else new TSParser(new TSScanner(new java.io.FileInputStream(args[0]),sf),sf).parse();
+	}
+:}
+
+terminal SEMI, PLUS, TIMES, LPAREN, RPAREN;
+terminal Integer NUMBER;
+
+non terminal expr_list, expr_part;
+non terminal Integer expr;
+
+precedence left PLUS;
+precedence left TIMES;
+
+expr_list ::= expr_list expr_part | expr_part;
+expr_part ::= expr:e {: System.out.println(" = "+e+";"); :} ;
+expr      ::= NUMBER:n
+	      {: RESULT=n; :}
+            | PLUS expr:l SEMI expr:r
+	      {: RESULT=new Integer(l.intValue() + r.intValue()); :}
+	    | TIMES expr:l SEMI expr:r
+	      {: RESULT=new Integer(l.intValue() * r.intValue()); :}
+	    | LPAREN expr:e RPAREN
+	      {: RESULT=e; :}
+	    ;
